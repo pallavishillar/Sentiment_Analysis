@@ -7,17 +7,10 @@ import './Style/Button.css';
 import './Style/Form.css';
 
 function App() {
-  
   const [loading, setLoading] = useState(false);
-  
+  const [showResultButton, setShowResultButton] = useState(false);
+
   const fetchData = () => {
-
-    var fileInput = document.getElementById('file-upload');
-    var file = fileInput.files[0];
-    if (file) {
-      var formData = new FormData();
-      formData.append('file', file);
-
     setLoading(true); 
 
     fetch("http://127.0.0.1:8016/buffer", {
@@ -27,14 +20,14 @@ function App() {
       .then(response => {
         console.log(response);
         setLoading(false);
+
+        setShowResultButton(true);
       })
-      
       .catch(error => {
         console.error('Error fetching data:', error);
-        setLoading(false); 
+        setLoading(false);
       });
   };
-}
 
   return (
     <div className='Background-color'>
@@ -43,7 +36,7 @@ function App() {
 
       {loading && <div className="loading-screen">Analysing...</div>}
       
-      <Button className="ViewResult" name={"View Result"} />
+      {showResultButton && <Button className="ViewResult" name={"View Result"} />}
     </div>
   );
 }
