@@ -1,0 +1,28 @@
+*{
+    font-size: 20px;
+}
+
+.Sendbtn{
+    position: absolute;
+    height: 50px;
+    width: 100px;
+    top: 350px;
+    left: 360px;
+    border: none;
+    background: #000;
+    color: aliceblue;
+   /* border: 3px solid black;*/
+    border: 3px solid white;
+}
+
+.ViewResult{
+    position: absolute;
+    height: 55px;
+    width: 250px;
+    top: 460px;
+    left: 170px;
+    border-radius: 90px;
+    color: #fff;
+    background-color: #2D374A;
+    border: 1px solid rgb(253, 247, 247);
+}
