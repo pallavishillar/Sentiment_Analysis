@@ -5,11 +5,12 @@ import Button from './Components/Button';
 import Form from './Components/Form';
 import './Style/Button.css';
 import './Style/Form.css';
+//import {Link} from 'react-router-dom';
+
 
 function App() {
   const [loading, setLoading] = useState(false);
   const [showResultButton, setShowResultButton] = useState(false);
-
   const fetchData = () => {
     setLoading(true); 
 
@@ -30,13 +31,15 @@ function App() {
   };
 
   return (
+    
     <div className='Background-color'>
       <Form />
       <Button className="Sendbtn" name={"Send"} onClick={fetchData} />
 
       {loading && <div className="loading-screen">Analysing...</div>}
       
-      {showResultButton && <Button className="ViewResult" name={"View Result"} />}
+      {showResultButton && <Button className="ViewResult" name={ "View Result"}></Button>}
+      
     </div>
   );
 }

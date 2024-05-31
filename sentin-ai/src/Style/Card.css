@@ -1,0 +1,18 @@
+.card {
+    margin-top: 5px;
+    margin-left: 40px;
+    width: 360px;
+    font-size: larger;
+    font-weight: 450;
+    height: 60px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
+    /* text-align: center;  */
+    /* align-items: center; */
+    font-size: 20px;
+  }

@@ -1,0 +1,15 @@
+.Box {
+    margin-top:10px;
+    margin-left: 155px;
+    width: 90px;
+    height: 40px;
+    background-color: rgb(93, 211, 93);
+    color: black;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    border-radius: 5px;
+    /* margin-bottom: 20px; */
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
