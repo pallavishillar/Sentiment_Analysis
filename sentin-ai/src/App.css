@@ -1,6 +1,5 @@
-.Background-color{
+.Background-color {
   background: url('./Images/BackgroundImg.png');
-   /* background: url('./Images/New_bg_img.png'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -12,6 +11,8 @@
   align-items: center;
   text-align: center;
   flex-direction: column;
+  padding: 20px; 
+  position: fixed;
 }
 
 .loading-screen {
@@ -27,4 +28,60 @@
   color: white;
   font-size: 2rem;
   z-index: 1000;
+  padding: 20px; 
+}
+
+
+@media (min-width: 1200px) {
+  .Background-color {
+    font-size: 1.2rem; 
+  }
+
+  .loading-screen {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .Background-color {
+    font-size: 1.1rem; 
+  }
+
+  .loading-screen {
+    font-size: 2.2rem; 
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .Background-color {
+    font-size: 1rem;
+  }
+
+  .loading-screen {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .Background-color {
+    font-size: 0.9rem; 
+    padding: 15px; 
+  }
+
+  .loading-screen {
+    font-size: 1.8rem; 
+    padding: 15px;
+  }
+}
+
+@media (max-width: 575px) {
+  .Background-color {
+    font-size: 0.8rem; 
+    padding: 10px;
+  }
+
+  .loading-screen {
+    font-size: 1.6rem; 
+    padding: 10px;
+  }
 }
