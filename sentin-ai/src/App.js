@@ -8,8 +8,9 @@ import { Link } from 'react-router-dom';
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [showResultButton, setShowResultButton] = useState(false);
-  const [file, setFile] = useState(null);
+const [showResultButton, setShowResultButton] = useState(false);
+const [file, setFile] = useState(null);
+
 
   const handleFileChange = (file) => {
     setFile(file);

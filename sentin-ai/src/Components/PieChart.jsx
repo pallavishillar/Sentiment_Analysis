@@ -6,10 +6,10 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ data }) => {
   const chartData = {
-    labels: ['Positive', 'Neutral', 'Negative'],
+   //labels: ['Positive', 'Neutral', 'Negative'],
     datasets: [
       {
-        label: 'Sentiment Analysis',
+        //label: 'Sentiment Analysis',
         data: [data.Positive, data.Neutral, data.Negative],
         backgroundColor: ['green', 'yellow', 'red'],
         hoverBackgroundColor: ['#36a2eb', '#ffcd56', '#ff6384'],
@@ -17,7 +17,11 @@ const PieChart = ({ data }) => {
     ],
   };
 
-  return <Pie data={chartData} />;
+  return (
+    <div style={{height: '540px',width: '300px', marginLeft: '140px' }}>
+      <Pie data={chartData} />
+    </div>
+  );
 };
 
 export default PieChart;
