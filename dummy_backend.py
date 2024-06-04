@@ -19,6 +19,7 @@ def image_to_base64(image_path):
         image_data = base64.b64encode(image_file.read()).decode()
     return image_data
 
+
 @app.get('/get_analysis')
 def get_analysis():
     response = {}

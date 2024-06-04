@@ -10,7 +10,7 @@ input[type="file"] {
      border: 3px solid white;
     border-radius: 4px;
     color: #000;
-    top: 350px;
+    top: 390px;
     left: 130px;
     font-size: medium;
     font-weight: bolder;
@@ -25,9 +25,9 @@ input[type="file"] {
   
   .uploadImg{
     position: absolute;
-    height: 300px;
-    top: 100px;
-    left: -80px;
+    height: 550px;
+    top:-20px;
+    left: 40px;
 
   }
 
@@ -36,4 +36,9 @@ input[type="file"] {
         width: 90%;
         height: 90%; 
     }
+  }
+
+  p{
+    margin-top: -40px;
+    margin-left: 600px;
   }

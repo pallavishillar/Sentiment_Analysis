@@ -1,33 +1,20 @@
 import React from 'react';
-//import BoxAPI from './BoxAPI'; 
 
-
-const Positivevalue = '50';
-const Neutralvalue = '30';
-const Negativevalue = '20';
-
-
-function Box(props) {
-  
+function Box({ type, value }) {
   const getColor = () => {
-    switch (props.type) {
+    switch (type) {
       case "Positive":
-        return { color: "green", value: Positivevalue };
+        return "green";
       case "Neutral":
-        return { color: "yellow", value: Neutralvalue };
+        return "yellow";
       case "Negative":
-        return { color: "red", value: Negativevalue };
+        return "red";
+      default:
+        return "grey";
     }
   };
 
-  const { color, value } = getColor();
-
- 
-  // const getValue = () => {
-  //   const box = BoxAPI.find(item => item.type == props.type);
-  //   return box ? box.name : "N/A"; 
-  // };
-  
+  const color = getColor();
 
   const selected_style = {
     backgroundColor: color,
@@ -40,7 +27,6 @@ function Box(props) {
 
   return (
     <div className="Box" style={selected_style}>
-      {/* {getValue()}  */}
       {value}
     </div>
   );

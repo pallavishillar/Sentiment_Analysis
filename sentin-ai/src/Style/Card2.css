@@ -1,5 +1,5 @@
 .card2 {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 40px;
     width: 580px;
     height: 300px;
@@ -11,4 +11,8 @@
     display: inline-block;
   }
 
-
+  .word-cloud {
+    margin-left: 70px;
+    width: 455px;
+    height: auto;
+  }

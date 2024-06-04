@@ -9,4 +9,18 @@
     border-radius: 5px;
     margin-bottom: 20px;
     display: inline-block;
+    color: black;
   }
+  .custom-dropdown {
+    color: black; 
+  }
+  
+
+  .dropdown-container {
+    margin-bottom: 10px;
+  }
+  
+  .folder-input {
+    margin-bottom: 10px;
+  }
+  

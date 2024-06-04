@@ -3,3 +3,13 @@
     /* background: url('./Images/Mainbackground.png'); */
     /* background: url('./Images/Mainbackground2.png'); */
 }
+
+  .card2-container {
+    display: flex;
+    gap: 10px; /* Adjust the gap as needed */
+  }
+/*   
+  .card2 {
+    flex: 1;
+  }
+   */
