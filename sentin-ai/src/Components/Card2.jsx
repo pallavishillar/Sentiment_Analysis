@@ -1,11 +1,9 @@
 import React from 'react';
 import PieChart from './PieChart';
 
-
-const Card2 = ({ type, data, wordCloudUrl }) => {
+const Card2 = ({ type, data, wordCloudUrl, className }) => {
   return (
-    <div className="card2">
-      
+    <div className={`card2 ${className}`}>
       {type === 'chart' ? (
         <PieChart data={data} />
       ) : (

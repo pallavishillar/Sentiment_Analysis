@@ -12,11 +12,10 @@ import './Main.css';
 import './Style/Box.css';
 import './Style/SearchBox.css';
 
-function Main() {
+const Main = () => {
   const [data, setData] = useState({ Positive: 0, Neutral: 0, Negative: 0 });
   const [wordCloudUrl, setWordCloudUrl] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
-  const [folderName, setFolderName] = useState('');
   const [responseFromBackend, setResponseFromBackend] = useState({});
 
   useEffect(() => {
@@ -44,12 +43,11 @@ function Main() {
 
   const handleDropdownChange = (newOption) => {
     setSelectedOption(newOption);
-  
+
     fetch(`http://127.0.0.1:8016/get_analysis?file=${newOption}`)
       .then(response => response.json())
       .then(response => {
         if (response.status) {
-         
           setResponseFromBackend(response.data);
         } else {
           console.error('Failed to fetch analysis results:', response.message);
@@ -60,10 +58,6 @@ function Main() {
       });
   };
 
-  const handleFolderInputChange = (newFolderName) => {
-    setFolderName(newFolderName);
-  };
-
   return (
     <div>
       <div className='Background'>
@@ -71,7 +65,7 @@ function Main() {
         <Card name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
         <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />
         <Card name={"Negative"} card={<Box type={"Negative"} value={data.Negative} />} />
-        
+
         <div className="card2-container">
           <Card2 type="chart" data={data} />
           <Card2 type="wordCloud" wordCloudUrl={wordCloudUrl} />
@@ -79,17 +73,14 @@ function Main() {
 
         <Card3 
           boxType="CustomType" 
-          boxValue={1234} 
+          boxValue="Some value" 
           dropdownOptions={dropdownOptions} 
-          onDropdownChange={handleDropdownChange} 
-          onFolderInputChange={handleFolderInputChange} 
-          responseData={responseFromBackend}
+          onDropdownChange={handleDropdownChange}
+          responseData={responseFromBackend} 
         />
-
-        {/* <SearchBox/> */}
       </div>
     </div>
   );
-}
+};
 
 export default Main;

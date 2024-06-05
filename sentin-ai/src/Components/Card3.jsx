@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import Card2 from './Card2';
+//import './Card3.css';
 
-const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
+const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange, responseData }) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleDropdownChange = (event) => {
@@ -22,6 +24,9 @@ const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
             ))}
           </select>
         </div>
+      </div>
+      <div className="card2-wrapper">
+        <Card2 type="chart" data={responseData} className="grey-card" />
       </div>
     </div>
   );

@@ -12,6 +12,7 @@
   }
 
   .word-cloud {
+    object-fit: cover;
     margin-left: 70px;
     width: 455px;
     height: auto;

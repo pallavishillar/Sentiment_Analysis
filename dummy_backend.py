@@ -23,7 +23,8 @@ def image_to_base64(image_path):
 @app.get('/get_analysis')
 def get_analysis():
     response = {}
-    image_str = image_to_base64('wordcloud/trial1.jpeg')
+    # image_str = image_to_base64('wordcloud/trial1.jpeg')
+    image_str = image_to_base64('wordcloud/wi2.jpg')
     result_dict = {
         'positive_counts' : 50,
         'negative_counts' : 40,
@@ -70,7 +71,7 @@ def get_analysis():
 @app.post('/buffer')
 def buffer():
     response = {}
-    timer = 10
+    timer = 2
     time.sleep(timer)
     response['status'] = True
     response['message'] = f'Delayed message after {timer}'
