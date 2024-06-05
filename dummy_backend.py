@@ -23,13 +23,14 @@ def image_to_base64(image_path):
 @app.get('/get_analysis')
 def get_analysis():
     response = {}
-    # image_str = image_to_base64('wordcloud/trial1.jpeg')
-    image_str = image_to_base64('wordcloud/wi2.jpg')
+    image_str = image_to_base64('wordcloud/trial1.jpeg')
+    # image_str = image_to_base64('wordcloud/wi2.jpg')
     result_dict = {
-        'positive_counts' : 50,
-        'negative_counts' : 40,
-        'neutral_counts' : 10,
+        'positive_counts' : 150,
+        'negative_counts' : 140,
+        'neutral_counts' : 110,
         'image' : image_str,
+        
         'file_list': ['file1.txt', 'file2.txt', 'file3.txt'],
         'data' : [
             {
@@ -75,6 +76,7 @@ def buffer():
     time.sleep(timer)
     response['status'] = True
     response['message'] = f'Delayed message after {timer}'
+    response['file_name'] = 'test_data_1'
     return response
 
 if __name__=="__main__":

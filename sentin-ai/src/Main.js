@@ -15,8 +15,12 @@ import './Style/SearchBox.css';
 const Main = () => {
   const [data, setData] = useState({ Positive: 0, Neutral: 0, Negative: 0 });
   const [wordCloudUrl, setWordCloudUrl] = useState('');
+  const [files, setFiles] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
   const [responseFromBackend, setResponseFromBackend] = useState({});
+  var file_list = [];
+
+  // const [dropdownOptions, setdropdownOptions] = useState('');
 
   useEffect(() => {
     fetch("http://127.0.0.1:8016/get_analysis")
@@ -24,63 +28,69 @@ const Main = () => {
       .then(response => {
         if (response.status) {
           const result = response.data;
+          console.log('Resūlt is : ', result);
           setData({
             Positive: result.positive_counts,
             Neutral: result.neutral_counts,
             Negative: result.negative_counts
           });
           setWordCloudUrl(`data:image/jpeg;base64,${result.image}`);
-        } else {
-          console.error('Failed to fetch analysis results:', response.message);
-        }
+
+          // setFiles(response.file_list);
+          //   const files = data;
+          // setFiles(files);
+
+        // setdropdownOptions(result.file_list);
+        // setFiles({
+        //   file_list: response.data,
+        // })
+
+        //setFiles(file_list);
+
+        console.log('File List is : ', file_list);
+      } else {
+        console.error('Failed to fetch analysis results:', response.message);
+      }
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}, []);
 
-  const dropdownOptions = ['file1.txt', 'file2.txt', 'file3.txt'];
 
-  const handleDropdownChange = (newOption) => {
-    setSelectedOption(newOption);
+// const file_list2 = []
+const dropdownOptions = file_list;
+// const dropdownOptions = ['file1.txt'];
+const handleDropdownChange = (newOption) => {
+  setSelectedOption(newOption);
+   //setResponseFromBackend(response.data);
+};
 
-    fetch(`http://127.0.0.1:8016/get_analysis?file=${newOption}`)
-      .then(response => response.json())
-      .then(response => {
-        if (response.status) {
-          setResponseFromBackend(response.data);
-        } else {
-          console.error('Failed to fetch analysis results:', response.message);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  };
+return (
+  <div>
+    <div className='Background'>
+      <Navbar />
+      <Card name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
+      <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />
+      <Card name={"Negative"} card={<Box type={"Negative"} value={data.Negative} />} />
 
-  return (
-    <div>
-      <div className='Background'>
-        <Navbar />
-        <Card name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
-        <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />
-        <Card name={"Negative"} card={<Box type={"Negative"} value={data.Negative} />} />
-
-        <div className="card2-container">
-          <Card2 type="chart" data={data} />
-          <Card2 type="wordCloud" wordCloudUrl={wordCloudUrl} />
-        </div>
-
-        <Card3 
-          boxType="CustomType" 
-          boxValue="Some value" 
-          dropdownOptions={dropdownOptions} 
-          onDropdownChange={handleDropdownChange}
-          responseData={responseFromBackend} 
-        />
+      <div className="card2-container">
+        <Card2 type="chart" data={data} />
+        <Card2 type="wordCloud" wordCloudUrl={wordCloudUrl} />
       </div>
+
+      <Card3
+        boxType="CustomType"
+        boxValue="Some value"
+        dropdownOptions={dropdownOptions}
+        onDropdownChange={handleDropdownChange}
+        responseData={responseFromBackend}
+      // card={<Box>{"folderName:"}</Box>}
+      // name={"folderName:"}
+      />
     </div>
-  );
+  </div>
+);
 };
 
 export default Main;

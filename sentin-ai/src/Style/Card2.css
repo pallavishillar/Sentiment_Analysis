@@ -12,8 +12,15 @@
   }
 
   .word-cloud {
-    object-fit: cover;
-    margin-left: 70px;
-    width: 455px;
-    height: auto;
+    object-fit:scale-down;
+    margin-left: 0px;
+    width:inherit;
+    height: inherit;
+  }
+
+  .chart{
+    object-fit:scale-down;
+    margin-left: 130px;
+    width:inherit;
+    height: inherit;
   }

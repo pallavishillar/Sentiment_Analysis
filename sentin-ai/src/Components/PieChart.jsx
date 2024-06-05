@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
+import '../Style/Card2.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -9,15 +10,15 @@ const PieChart = ({ data }) => {
     datasets: [
       {
         data: [data.Positive, data.Neutral, data.Negative],
-        backgroundColor: ['green', 'yellow', 'red'],
+        backgroundColor: ['#2E8B57', '#FFD700', '#E2252B'],
         hoverBackgroundColor: ['#36a2eb', '#ffcd56', '#ff6384'],
       },
     ],
   };
 
   return (
-    <div style={{height: '540px',width: '300px', marginLeft: '140px' }}>
-      <Pie data={chartData} />
+    // <div style={{height: 'inherit',width: 'inherit', marginLeft: '0px', objectFit: 'scale-down' }}>
+    <div className='chart'><Pie data={chartData} />
     </div>
   );
 };

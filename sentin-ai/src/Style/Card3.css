@@ -1,43 +1,48 @@
 .card3 {
-    margin-top: 10px;
-    margin-left: 40px;
-    width: 1240px;
-    height: 500px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    display: inline-block;
-    color: black;
-  }
-  .custom-dropdown {
-    color: black; 
-  }
-  
+  /* margin-top: 10px; */
+  margin-left: 40px;
+  width: 1240px;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: inline-block;
+  color: black;
+}
 
-  .dropdown-container {
-    margin-bottom: 10px;
-    margin-left: -190px;
-  }
-  
-  .folder-input {
-    margin-bottom: 10px;
-  }
-  
+.custom-dropdown {
+  background-color: #576174;
+  margin-top: 30px;
+  color: black;
+  margin-left: -63px;
+  width: 300px;
+  height: 50px;
+  text-align: center;
+  border-radius: 19px;
+}
+
+.dropdown-container {
+  margin-bottom: 10px;
+  margin-left: -190px;
+}
+
+.folder-input {
+  margin-bottom: 10px;
+  color: black;
+}
+
 .card3 {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.card3-content {
-  margin-bottom: 20px;
-}
-
 .dropdown-container {
+  color: rgb(247, 245, 245);
   width: 90%;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .card2-wrapper {
@@ -46,12 +51,33 @@
   justify-content: flex-end;
 }
 
+.card2-wrapper2{
+  width: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.blue-card{
+  margin-top: -300px;
+  margin-right: 290px;
+  height: 200px;
+  width: 320px;
+  background-color: #2D374A;
+  padding: 20px;
+  border-radius: 18px;
+
+}
+
 .grey-card {
-  margin-top: -120px;
+  margin-top: -170px;
   height: 450px;
   width: 800px;
   background-color: grey;
   padding: 20px;
   border-radius: 8px;
+}
+
+.Filename-card{
+  background-color: aquamarine;
 }
 

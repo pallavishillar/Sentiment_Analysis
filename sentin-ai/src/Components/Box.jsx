@@ -1,14 +1,17 @@
-import React from 'react';
+import React from "react";
 
 function Box({ type, value }) {
   const getColor = () => {
     switch (type) {
       case "Positive":
-        return "green";
+        return "#2E8B57"
+      // return "3CB070"
+      //  return "32612D"
+      // return "004225"
       case "Neutral":
-        return "yellow";
+        return "#FFD700";
       case "Negative":
-        return "red";
+        return "#E2252B";
       default:
         return "grey";
     }
@@ -27,7 +30,8 @@ function Box({ type, value }) {
 
   return (
     <div className="Box" style={selected_style}>
-      {value}
+     {value}
+     
     </div>
   );
 }
