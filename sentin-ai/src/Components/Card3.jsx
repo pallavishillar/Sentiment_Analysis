@@ -20,6 +20,7 @@ const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
 
         if (!folderName) {
           selectedFolder(data.folder_name);
+          console.log("error go",folderName);
         }
         
       } else {
@@ -46,11 +47,9 @@ const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
 
       
 <div id='file-info'>
-  {/* Always show this */}
 
   {selectedFolder && <h4>Folder Name: {selectedFolder}</h4>}
-  
-  {/* Show selected file name if a file is selected */}
+
   {selectedFileName && <h4>Selected File: {selectedFileName}</h4>}
 </div>
 

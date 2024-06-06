@@ -5,6 +5,7 @@ import Button from './Components/Button';
 import Form from './Components/Form';
 import './Style/Form.css';
 import { Link } from 'react-router-dom';
+import ParentComponent from './Components/ParentComponent';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -41,6 +42,8 @@ const [file, setFile] = useState(null);
 
   return (
     <div className='Background-color'>
+
+<ParentComponent />
       <Form onFileChange={handleFileChange} />
       <Button className="Sendbtn" name={"Send"} onClick={fetchData} />
 
@@ -50,6 +53,7 @@ const [file, setFile] = useState(null);
         <Link to="/Main">
           <Button className="ViewResult" name={"View Result"}></Button>
         </Link>
+
       )}
     </div>
   );
