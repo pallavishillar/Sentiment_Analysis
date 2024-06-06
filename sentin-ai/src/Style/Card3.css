@@ -1,22 +1,25 @@
+*{
+  color: black;
+}
+
 .card3 {
   /* margin-top: 10px; */
   margin-left: 40px;
   width: 1240px;
   height: 500px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 250, 250);
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
   display: inline-block;
-  color: black;
 }
 
 .custom-dropdown {
   background-color: #576174;
-  margin-top: 30px;
+  margin-top: 80px;
   color: black;
-  margin-left: -63px;
+  margin-right: 700px;
   width: 300px;
   height: 50px;
   text-align: center;
@@ -82,3 +85,13 @@
   background-color: aquamarine;
 }
 
+.pre{
+  color: black;
+
+}
+
+.data-display{
+  color: black;
+  margin-top: -110px;
+  margin-left: 300px;
+}

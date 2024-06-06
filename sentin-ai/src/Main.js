@@ -17,7 +17,6 @@ const Main = () => {
   const [wordCloudUrl, setWordCloudUrl] = useState('');
   const [fileList, setFileList] = useState([]);
   const [responseFromBackend, setResponseFromBackend] = useState({});
-  const [selectedFile, setSelectedFile] = useState('');
 
   useEffect(() => {
     fetch("http://127.0.0.1:8016/get_analysis")
@@ -39,23 +38,28 @@ const Main = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, []); 
 
-  const handleDropdownChange = (newOption) => {
-    setSelectedFile(newOption);
-    fetch(`http://127.0.0.1:8016/get_analysis?file=${newOption}`)
-      .then(response => response.json())
-      .then(response => {
-        if (response.status) {
-          setResponseFromBackend(response.data);
-        } else {
-          console.error('Failed to fetch file data:', response.message);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching file data:', error);
-      });
+  
+  const handleDropdownChange = async (newOption) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8016/get_analysis?file=${newOption}`);
+      const data = await response.json();
+      if (data.status) {
+        setResponseFromBackend(data.data);
+        return data;
+      } else {
+        console.error('Failed to fetch file data:', data.message);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching file data:', error);
+      return null;
+    }
   };
+
+  const [selectedOption, setSelectedOption] = useState(fileList[0] || ''); 
+
 
   return (
     <div>
