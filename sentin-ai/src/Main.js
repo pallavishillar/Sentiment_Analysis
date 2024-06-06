@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './Components/Navbar';
-import './Style/Navbar.css';
 import Card from './Components/Card';
 import Card2 from './Components/Card2';
 import Card3 from './Components/Card3';
 import Box from './Components/Box';
+import './Style/Navbar.css';
 import './Style/Card.css';
 import './Style/Card2.css';
 import './Style/Card3.css';
@@ -15,12 +15,9 @@ import './Style/SearchBox.css';
 const Main = () => {
   const [data, setData] = useState({ Positive: 0, Neutral: 0, Negative: 0 });
   const [wordCloudUrl, setWordCloudUrl] = useState('');
-  const [files, setFiles] = useState([]);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [fileList, setFileList] = useState([]);
   const [responseFromBackend, setResponseFromBackend] = useState({});
-  var file_list = [];
-
-  // const [dropdownOptions, setdropdownOptions] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
 
   useEffect(() => {
     fetch("http://127.0.0.1:8016/get_analysis")
@@ -28,69 +25,61 @@ const Main = () => {
       .then(response => {
         if (response.status) {
           const result = response.data;
-          console.log('Resūlt is : ', result);
           setData({
             Positive: result.positive_counts,
             Neutral: result.neutral_counts,
             Negative: result.negative_counts
           });
           setWordCloudUrl(`data:image/jpeg;base64,${result.image}`);
-
-          // setFiles(response.file_list);
-          //   const files = data;
-          // setFiles(files);
-
-        // setdropdownOptions(result.file_list);
-        // setFiles({
-        //   file_list: response.data,
-        // })
-
-        //setFiles(file_list);
-
-        console.log('File List is : ', file_list);
-      } else {
-        console.error('Failed to fetch analysis results:', response.message);
-      }
+          setFileList(result.file_list);
+        } else {
+          console.error('Failed to fetch analysis results:', response.message);
+        }
       })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
-}, []);
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
+  const handleDropdownChange = (newOption) => {
+    setSelectedFile(newOption);
+    fetch(`http://127.0.0.1:8016/get_analysis?file=${newOption}`)
+      .then(response => response.json())
+      .then(response => {
+        if (response.status) {
+          setResponseFromBackend(response.data);
+        } else {
+          console.error('Failed to fetch file data:', response.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching file data:', error);
+      });
+  };
 
-// const file_list2 = []
-const dropdownOptions = file_list;
-// const dropdownOptions = ['file1.txt'];
-const handleDropdownChange = (newOption) => {
-  setSelectedOption(newOption);
-   //setResponseFromBackend(response.data);
-};
+  return (
+    <div>
+      <div className='Background'>
+        <Navbar />
+        <Card name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
+        <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />
+        <Card name={"Negative"} card={<Box type={"Negative"} value={data.Negative} />} />
 
-return (
-  <div>
-    <div className='Background'>
-      <Navbar />
-      <Card name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
-      <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />
-      <Card name={"Negative"} card={<Box type={"Negative"} value={data.Negative} />} />
+        <div className="card2-container">
+          <Card2 type="chart" data={data} />
+          <Card2 type="wordCloud" wordCloudUrl={wordCloudUrl} />
+        </div>
 
-      <div className="card2-container">
-        <Card2 type="chart" data={data} />
-        <Card2 type="wordCloud" wordCloudUrl={wordCloudUrl} />
+        <Card3
+          boxType="CustomType"
+          boxValue="Some value"
+          dropdownOptions={fileList}
+          onDropdownChange={handleDropdownChange}
+          responseData={responseFromBackend}
+        />
       </div>
-
-      <Card3
-        boxType="CustomType"
-        boxValue="Some value"
-        dropdownOptions={dropdownOptions}
-        onDropdownChange={handleDropdownChange}
-        responseData={responseFromBackend}
-      // card={<Box>{"folderName:"}</Box>}
-      // name={"folderName:"}
-      />
     </div>
-  </div>
-);
+  );
 };
 
 export default Main;
