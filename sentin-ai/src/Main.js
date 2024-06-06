@@ -40,7 +40,7 @@ const Main = () => {
       });
   }, []); 
 
-  
+
   const handleDropdownChange = async (newOption) => {
     try {
       const response = await fetch(`http://127.0.0.1:8016/get_analysis?file=${newOption}`);
@@ -64,6 +64,7 @@ const Main = () => {
   return (
     <div>
       <div className='Background'>
+        <fileName></fileName>
         <Navbar />
         <Card name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
         <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />

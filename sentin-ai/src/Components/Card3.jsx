@@ -3,17 +3,25 @@ import React, { useState } from 'react';
 const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [localResponseData, setLocalResponseData] = useState(null);
+  const [selectedFileName, setSelectedFileName] = useState('');
+  const [folderName, selectedFolder] = useState('');
 
   const handleDropdownChange = async (event) => {
     const newOption = event.target.value;
     setSelectedOption(newOption);
-  
+    setSelectedFileName(newOption);   
+
     try {
       const response = await fetch(`http://127.0.0.1:8016/get_analysis?file=${encodeURIComponent(newOption)}`);
       const data = await response.json();
       if (data.status) {
         const fileData = data.data.data.find(file => Object.keys(file)[0] === newOption);
         setLocalResponseData(fileData ? fileData[newOption] : null); 
+
+        if (!folderName) {
+          selectedFolder(data.folder_name);
+        }
+        
       } else {
         console.error('Failed to fetch file data:', data.message);
       }
@@ -21,12 +29,10 @@ const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
       console.error('Error fetching file data:', error);
     }
   };
-  
 
   return (
     <div className="card3">
       <div className="card3-content" style={{ color: "black" }}>
-        
         <div className="dropdown-container">
           <select className="custom-dropdown" value={selectedOption} onChange={handleDropdownChange}>
             <option value="" disabled>Select a file</option>
@@ -37,12 +43,23 @@ const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
         </div>
       </div>
 
-      {localResponseData && (
-        <div className="data-display" >
-          <h4>Overall:</h4>
-          <pre>{localResponseData}</pre>
-        </div>
-      )}
+
+      
+<div id='file-info'>
+  {/* Always show this */}
+
+  {selectedFolder && <h4>Folder Name: {selectedFolder}</h4>}
+  
+  {/* Show selected file name if a file is selected */}
+  {selectedFileName && <h4>Selected File: {selectedFileName}</h4>}
+</div>
+
+
+
+      <div className="data-display">
+        <h4>Overall:</h4>
+        <pre>{localResponseData}</pre>
+      </div>
     </div>
   );
 };

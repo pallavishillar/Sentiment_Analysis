@@ -14,6 +14,7 @@ const [file, setFile] = useState(null);
 
   const handleFileChange = (file) => {
     setFile(file);
+     
   };
 
   const fetchData = () => {
