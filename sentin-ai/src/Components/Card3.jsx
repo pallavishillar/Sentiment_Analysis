@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 
-const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
+const Card3 = ({ dropdownOptions, folderName }) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [localResponseData, setLocalResponseData] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState('');
-  const [folderName, selectedFolder] = useState('');
 
   const handleDropdownChange = async (event) => {
     const newOption = event.target.value;
     setSelectedOption(newOption);
-    setSelectedFileName(newOption);   
+    setSelectedFileName(newOption);
 
     try {
-      const response = await fetch(`http://127.0.0.1:8016/get_analysis?file=${encodeURIComponent(newOption)}`);
+      const response = await fetch('http://127.0.0.1:8016/get_analysis', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ file: newOption }),
+      });
+
       const data = await response.json();
       if (data.status) {
         const fileData = data.data.data.find(file => Object.keys(file)[0] === newOption);
-        setLocalResponseData(fileData ? fileData[newOption] : null); 
-
-        if (!folderName) {
-          selectedFolder(data.folder_name);
-          console.log("error go",folderName);
-        }
-        
+        setLocalResponseData(fileData ? fileData[newOption] : null);
       } else {
         console.error('Failed to fetch file data:', data.message);
       }
@@ -44,16 +44,14 @@ const Card3 = ({ boxType, boxValue, dropdownOptions, onDropdownChange }) => {
         </div>
       </div>
 
+      <div id='file-info2'>
+        {selectedFileName && <h4>Selected File: {selectedFileName}</h4>}
+      </div>
 
-      
-<div id='file-info'>
+      <div id='file-info'>
+      {folderName && <h4>Selected Folder: {folderName}</h4>}
 
-  {selectedFolder && <h4>Folder Name: {selectedFolder}</h4>}
-
-  {selectedFileName && <h4>Selected File: {selectedFileName}</h4>}
-</div>
-
-
+      </div>
 
       <div className="data-display">
         <h4>Overall:</h4>

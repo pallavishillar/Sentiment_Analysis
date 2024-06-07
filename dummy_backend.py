@@ -20,7 +20,7 @@ def image_to_base64(image_path):
     return image_data
 
 
-@app.get('/get_analysis')
+@app.post('/get_analysis')
 def get_analysis():
     response = {}
     image_str = image_to_base64('wordcloud/trial1.jpeg')
@@ -31,7 +31,7 @@ def get_analysis():
         'neutral_counts' : 110,
         'image' : image_str,
         
-        'file_list': ['file1.txt', 'file2.txt', 'file3.txt'],
+        'file_list': ['file1.txt', 'file2.txt', 'file3.txt','file4.txt','file5.txt','file6.txt','file7.txt','file8.txt','file9.txt','file10.txt'],
         'data' : [
             {
                 'file1.txt' : '''
@@ -59,7 +59,70 @@ def get_analysis():
                 4. Rating Score : 1 out of 5
                 5.Overall Sentiment : Negative 
                 '''
-            }
+            },
+              {
+                'file4.txt' : '''
+                1. Dummy1ss
+                2. Dummy2
+                3. Dummy3
+                4. Rating Score : 4 out of 5
+                5.Overall Sentiment : Positive 
+                '''
+            },
+                {
+                'file5.txt' : '''
+                1. Dummy1ss
+                2. Dummy2
+                3. Dummy3
+                4. Rating Score : 4 out of 5
+                5.Overall Sentiment : Positive 
+                '''
+            },
+                  {
+                'file6.txt' : '''
+                1. Dummy1ss
+                2. Dummy2
+                3. Dummy3
+                4. Rating Score : 4 out of 5
+                5.Overall Sentiment : Positive 
+                '''
+            },
+                    {
+                'file7.txt' : '''
+                1. Dummy1ss
+                2. Dummy2
+                3. Dummy3
+                4. Rating Score : 4 out of 5
+                5.Overall Sentiment : Positive 
+                '''
+            },
+                      {
+                'file8.txt' : '''
+                1. Dummy1ss
+                2. Dummy2
+                3. Dummy3
+                4. Rating Score : 4 out of 5
+                5.Overall Sentiment : Positive 
+                '''
+            },
+                        {
+                'file9.txt' : '''
+                1. Dummy1ss
+                2. Dummy2
+                3. Dummy3
+                4. Rating Score : 4 out of 5
+                5.Overall Sentiment : Positive 
+                '''
+            },
+                          {
+                'file10.txt' : '''
+                1. Dummy1ss
+                2. Dummy2
+                3. Dummy3
+                4. Rating Score : 4 out of 5
+                5.Overall Sentiment : Positive 
+                '''
+            },
         ]
     }
     
@@ -75,9 +138,9 @@ def buffer():
     response = {}
     timer = 2
     time.sleep(timer)
-    response['status'] = True
+    response['status'] = False
     response['message'] = f'Delayed message after {timer}'
-    response['folder_name'] = 'test_data_1'
+    # response['folder_name'] = 'test_data_1'
     return response
 
 if __name__=="__main__":

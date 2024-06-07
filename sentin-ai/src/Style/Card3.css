@@ -1,5 +1,5 @@
 *{
-  color: black;
+  font-size: 20px;
 }
 
 .card3 {
@@ -59,17 +59,17 @@
   display: flex;
   justify-content: flex-end;
 }
-
+/* 
 .blue-card{
   margin-top: -300px;
   margin-right: 290px;
   height: 200px;
   width: 320px;
-  background-color: #2D374A;
+  background-color: #131415;
   padding: 20px;
   border-radius: 18px;
 
-}
+} */
 
 .grey-card {
   margin-left: 300px;
@@ -87,23 +87,27 @@
 
 .pre{
   color: black;
-
 }
 
 .data-display {
   border: 2px solid #2c3e50; 
-  color: #f1f6fa; 
+  color: white; 
   margin-top: -110px;
-  margin-left: 450px;
+  margin-left: 400px;
   height: 600px;
-  width: 660px;
-  background: linear-gradient(to right, #576174, #2D374A); 
+  width: 800px;
+  background: linear-gradient(to right, #030404, #2D374A); 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px; 
   /*overflow: auto; */
 }
 
+
+.data-display h4{
+  text-align: center;
+  font-size: 25px;
+}
 
 /* #name-diplay{
   border: 2px solid #2c3e50; 
@@ -123,11 +127,24 @@
 #file-info{
   position: absolute;
   border: 2px solid #2c3e50;
-  left: 90px;
-  height: 250px;
-  width: 300px; 
-  background: linear-gradient(to right, #576174, #2D374A);  
+  left: 70px;
+  height: 80px;
+  width: 350px; 
+  background: linear-gradient(to right, #16161c, #2D374A);  
   top: 760px;
+  border-radius: 10px;
+  text-align: center;
+ 
+}
+
+#file-info2{
+  position: absolute;
+  border: 2px solid #2c3e50;
+  left: 70px;
+  height: 80px;
+  width: 350px; 
+  background: linear-gradient(to right, #08090b, #2D374A);  
+  top: 900px;
   border-radius: 10px;
   text-align: center;
  

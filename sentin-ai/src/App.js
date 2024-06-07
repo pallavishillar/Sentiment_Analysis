@@ -5,13 +5,12 @@ import Button from './Components/Button';
 import Form from './Components/Form';
 import './Style/Form.css';
 import { Link } from 'react-router-dom';
-import ParentComponent from './Components/ParentComponent';
+
 
 function App() {
   const [loading, setLoading] = useState(false);
 const [showResultButton, setShowResultButton] = useState(false);
 const [file, setFile] = useState(null);
-
 
   const handleFileChange = (file) => {
     setFile(file);
@@ -43,8 +42,8 @@ const [file, setFile] = useState(null);
   return (
     <div className='Background-color'>
 
-<ParentComponent />
       <Form onFileChange={handleFileChange} />
+      
       <Button className="Sendbtn" name={"Send"} onClick={fetchData} />
 
       {loading && <div className="loading-screen">Analysing...</div>}

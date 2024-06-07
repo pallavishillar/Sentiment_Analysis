@@ -17,20 +17,39 @@ const Main = () => {
   const [wordCloudUrl, setWordCloudUrl] = useState('');
   const [fileList, setFileList] = useState([]);
   const [responseFromBackend, setResponseFromBackend] = useState({});
+  const [folderName, setFolderName] = useState('');
+
+  const requestBody = {
+    folder_name : 'f_name',
+  }
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8016/get_analysis")
+    fetch("http://127.0.0.1:8016/get_analysis",{
+      method : 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    })
+
       .then(response => response.json())
       .then(response => {
         if (response.status) {
           const result = response.data;
+
           setData({
             Positive: result.positive_counts,
             Neutral: result.neutral_counts,
             Negative: result.negative_counts
           });
+          
           setWordCloudUrl(`data:image/jpeg;base64,${result.image}`);
+
           setFileList(result.file_list);
+          
+          setFolderName(result.folder_name);
+          console.log('folder_name');
+
         } else {
           console.error('Failed to fetch analysis results:', response.message);
         }
@@ -38,7 +57,7 @@ const Main = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []); 
+  }, []);
 
 
   const handleDropdownChange = async (newOption) => {
@@ -58,13 +77,12 @@ const Main = () => {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState(fileList[0] || ''); 
+  //const [selectedOption, setSelectedOption] = useState(fileList[0] || '');
 
 
   return (
     <div>
       <div className='Background'>
-        <fileName></fileName>
         <Navbar />
         <Card name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
         <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />
@@ -81,7 +99,9 @@ const Main = () => {
           dropdownOptions={fileList}
           onDropdownChange={handleDropdownChange}
           responseData={responseFromBackend}
+          folderName={folderName}
         />
+
       </div>
     </div>
   );
