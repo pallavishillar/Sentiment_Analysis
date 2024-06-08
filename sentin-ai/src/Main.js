@@ -19,46 +19,38 @@ const Main = () => {
   const [responseFromBackend, setResponseFromBackend] = useState({});
   const [folderName, setFolderName] = useState('');
 
-  const requestBody = {
-    folder_name : 'f_name',
-  }
-
   useEffect(() => {
-    fetch("http://127.0.0.1:8016/get_analysis",{
-      method : 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    })
+    const fetchAnalysisData = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8016/get_analysis", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}),
+        });
 
-      .then(response => response.json())
-      .then(response => {
-        if (response.status) {
-          const result = response.data;
-
+        const result = await response.json();
+        if (result.status) {
           setData({
-            Positive: result.positive_counts,
-            Neutral: result.neutral_counts,
-            Negative: result.negative_counts
+            Positive: result.data.positive_counts,
+            Neutral: result.data.neutral_counts,
+            Negative: result.data.negative_counts,
           });
-          
-          setWordCloudUrl(`data:image/jpeg;base64,${result.image}`);
 
-          setFileList(result.file_list);
-          
-          setFolderName(result.folder_name);
-          console.log('folder_name');
-
+          setWordCloudUrl(`data:image/jpeg;base64,${result.data.image}`);
+          setFileList(result.data.file_list);
+          setFolderName(result.folder_name); 
         } else {
-          console.error('Failed to fetch analysis results:', response.message);
+          console.error('Failed to fetch analysis results:', result.message);
         }
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching data:', error);
-      });
-  }, []);
+      }
+    };
 
+    fetchAnalysisData();
+  }, []);  
 
   const handleDropdownChange = async (newOption) => {
     try {
@@ -77,9 +69,6 @@ const Main = () => {
     }
   };
 
-  //const [selectedOption, setSelectedOption] = useState(fileList[0] || '');
-
-
   return (
     <div>
       <div className='Background'>
@@ -94,14 +83,11 @@ const Main = () => {
         </div>
 
         <Card3
-          boxType="CustomType"
-          boxValue="Some value"
           dropdownOptions={fileList}
           onDropdownChange={handleDropdownChange}
           responseData={responseFromBackend}
-          folderName={folderName}
+          folderName={folderName} 
         />
-
       </div>
     </div>
   );

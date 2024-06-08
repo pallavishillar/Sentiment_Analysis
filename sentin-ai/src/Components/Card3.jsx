@@ -49,8 +49,7 @@ const Card3 = ({ dropdownOptions, folderName }) => {
       </div>
 
       <div id='file-info'>
-      {folderName && <h4>Selected Folder: {folderName}</h4>}
-
+        {folderName && <h4>Folder Name: {folderName}</h4>} 
       </div>
 
       <div className="data-display">
