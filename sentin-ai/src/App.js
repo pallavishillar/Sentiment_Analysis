@@ -14,13 +14,7 @@ const [fileName, setFileName] = useState('');
 
 const handleFileChange = (file) => {
     setFile(file);
-<<<<<<< HEAD
-};
-
-=======
-    console.log(file);
   };
->>>>>>> 8e218a5 (minor changes)
   const fetchData = () => {
     setLoading(true);
 
