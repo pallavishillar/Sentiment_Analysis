@@ -11,13 +11,22 @@ import './Style/Card3.css';
 import './Main.css';
 import './Style/Box.css';
 import './Style/SearchBox.css';
+import { useLocation } from 'react-router-dom';
 
 const Main = () => {
+<<<<<<< HEAD
 
+=======
+  // const location = useLocation();
+  // const searchParams = new URLSearchParams(location.search);
+  // const fileName = searchParams.get('fileName');
+// console.log('fileName : ', fileName);
+>>>>>>> 8e218a5 (minor changes)
   const [data, setData] = useState({ Positive: 0, Neutral: 0, Negative: 0 });
   const [wordCloudUrl, setWordCloudUrl] = useState('');
   const [fileList, setFileList] = useState([]);
   const [responseFromBackend, setResponseFromBackend] = useState({});
+<<<<<<< HEAD
   const [folderName, setFolderName] = useState('');
   
   //setFolderName(localStorage.getItem("folder_name"));
@@ -43,11 +52,31 @@ const Main = () => {
 
         const result = await response.json();
         if (result.status) {
+=======
+  const [selectedFile, setSelectedFile] = useState('');
+  // ___________________
+  const requestBody = { folder_name : 'test_data_1'}
+  // ___________________
+  console.log('request : ', requestBody);
+  useEffect(() => {
+    fetch("http://localhost:3949/fetch_data", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then(response => response.json())
+      .then(response => {
+        if (response.status) {
+          const result = response.data;
+>>>>>>> 8e218a5 (minor changes)
           setData({
             Positive: result.data.positive_counts,
             Neutral: result.data.neutral_counts,
             Negative: result.data.negative_counts,
           });
+<<<<<<< HEAD
 
           setWordCloudUrl(`data:image/jpeg;base64,${result.data.image}`);
 
@@ -55,6 +84,10 @@ const Main = () => {
 
           setFolderName(localStorage.getItem("folder_name"));
 
+=======
+          setWordCloudUrl(`data:image/jpeg;base64,${result.img_str}`);
+          setFileList(result.file_list);
+>>>>>>> 8e218a5 (minor changes)
         } else {
           console.error('Failed to fetch analysis results:', result.message);
         }

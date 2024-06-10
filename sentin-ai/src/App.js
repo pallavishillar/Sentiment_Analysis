@@ -6,23 +6,27 @@ import Form from './Components/Form';
 import './Style/Form.css';
 import { Link } from 'react-router-dom';
 
-
-function App() {
-  const [loading, setLoading] = useState(false);
+function App(props) {
+const [loading, setLoading] = useState(false);
 const [showResultButton, setShowResultButton] = useState(false);
 const [file, setFile] = useState(null);
+const [fileName, setFileName] = useState('');
 
 const handleFileChange = (file) => {
     setFile(file);
+<<<<<<< HEAD
 };
 
+=======
+    console.log(file);
+  };
+>>>>>>> 8e218a5 (minor changes)
   const fetchData = () => {
     setLoading(true);
 
     const formData = new FormData();
     formData.append('file', file);
-
-    fetch("http://127.0.0.1:8016/buffer", {
+    fetch("http://localhost:3949/begin_analysis", {
       method: 'POST',
       body: formData
     })
@@ -33,6 +37,7 @@ const handleFileChange = (file) => {
 
         setLoading(false);
         setShowResultButton(true);
+        setFileName(response.folder_name);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -41,8 +46,9 @@ const handleFileChange = (file) => {
   };
 
   return (
+  <>
     <div className='Background-color'>
-
+      
       <Form onFileChange={handleFileChange} />
       
       <Button className="Sendbtn" name={"Send"} onClick={fetchData} />
@@ -56,6 +62,8 @@ const handleFileChange = (file) => {
 
       )}
     </div>
+    
+  </>
   );
 }
 
