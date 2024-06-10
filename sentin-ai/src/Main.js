@@ -14,80 +14,29 @@ import './Style/SearchBox.css';
 import { useLocation } from 'react-router-dom';
 
 const Main = () => {
-<<<<<<< HEAD
-
-=======
   // const location = useLocation();
   // const searchParams = new URLSearchParams(location.search);
   // const fileName = searchParams.get('fileName');
 // console.log('fileName : ', fileName);
->>>>>>> 8e218a5 (minor changes)
   const [data, setData] = useState({ Positive: 0, Neutral: 0, Negative: 0 });
   const [wordCloudUrl, setWordCloudUrl] = useState('');
   const [fileList, setFileList] = useState([]);
   const [responseFromBackend, setResponseFromBackend] = useState({});
-<<<<<<< HEAD
-  const [folderName, setFolderName] = useState('');
-  
-  //setFolderName(localStorage.getItem("folder_name"));
-
-  console.log('folder name : ', folderName);
-
-
-  const requestBody = {
-    folder_name : folderName,
-  }
-
-
-  useEffect(() => {
-    const fetchAnalysisData = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:8016/get_analysis", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestBody),
-        });
-
-        const result = await response.json();
-        if (result.status) {
-=======
   const [selectedFile, setSelectedFile] = useState('');
-  // ___________________
-  const requestBody = { folder_name : 'test_data_1'}
-  // ___________________
-  console.log('request : ', requestBody);
+
   useEffect(() => {
-    fetch("http://localhost:3949/fetch_data", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    })
+    fetch("http://127.0.0.1:8016/get_analysis")
       .then(response => response.json())
       .then(response => {
         if (response.status) {
           const result = response.data;
->>>>>>> 8e218a5 (minor changes)
           setData({
             Positive: result.data.positive_counts,
             Neutral: result.data.neutral_counts,
             Negative: result.data.negative_counts,
           });
-<<<<<<< HEAD
-
-          setWordCloudUrl(`data:image/jpeg;base64,${result.data.image}`);
-
-          setFileList(result.data.file_list);
-
-          setFolderName(localStorage.getItem("folder_name"));
-
-=======
-          setWordCloudUrl(`data:image/jpeg;base64,${result.img_str}`);
+          setWordCloudUrl(`data:image/jpeg;base64,${result.image}`);
           setFileList(result.file_list);
->>>>>>> 8e218a5 (minor changes)
         } else {
           console.error('Failed to fetch analysis results:', result.message);
         }
