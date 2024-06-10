@@ -1,15 +1,15 @@
-*{
-  margin: 0;
-  padding: 0;
-}
 .Background{
-    /* background: url('./Images/BackgroundImg.png'); */
+    background: url('./Images/BackgroundImg.png');
     /* background: url('./Images/Mainbackground.png'); */
     /* background: url('./Images/Mainbackground2.png'); */
-    background: grey;
 }
 
   .card2-container {
     display: flex;
-    gap: 10px; 
+    gap: 10px; /* Adjust the gap as needed */
   }
+/*   
+  .card2 {
+    flex: 1;
+  }
+   */

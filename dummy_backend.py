@@ -65,7 +65,7 @@ def get_analysis():
                 1. Dummy1ss
                 2. Dummy2
                 3. Dummy3
-                4. Rating Score : 5 out of 5
+                4. Rating Score : 4 out of 5
                 5.Overall Sentiment : Positive 
                 '''
             },
@@ -129,6 +129,7 @@ def get_analysis():
     response['status'] = True
     response['message'] = "Fetched Analysis results"
     response['data'] = result_dict
+    response['folder_name'] = 'test_data_1'
     
     return response
 
@@ -137,9 +138,9 @@ def buffer():
     response = {}
     timer = 2
     time.sleep(timer)
-    response['status'] = True
+    response['status'] = False
     response['message'] = f'Delayed message after {timer}'
-    response['folder_name'] = 'test_data_1'
+    # response['folder_name'] = 'test_data_1'
     return response
 
 if __name__=="__main__":

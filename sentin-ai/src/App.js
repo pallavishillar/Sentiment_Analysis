@@ -12,9 +12,11 @@ const [showResultButton, setShowResultButton] = useState(false);
 const [file, setFile] = useState(null);
 const [fileName, setFileName] = useState('');
 
-const handleFileChange = (file) => {
+  const handleFileChange = (file) => {
     setFile(file);
+     
   };
+
   const fetchData = () => {
     setLoading(true);
 
@@ -27,8 +29,6 @@ const handleFileChange = (file) => {
       .then(response => response.json())
       .then(response => {
         console.log(response);
-        localStorage.setItem("folder_name", response.folder_name);
-
         setLoading(false);
         setShowResultButton(true);
         setFileName(response.folder_name);

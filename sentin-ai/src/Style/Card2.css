@@ -18,30 +18,9 @@
     height: inherit;
   }
 
-
-
- .chart{
+  .chart{
     object-fit:scale-down;
     margin-left: 130px;
     width:inherit;
     height: inherit;
-  } 
-
-  @media only screen and (max-width: 600px) {
-    .chart {
-        object-fit:scale-down;
-        margin-left: 130px;
-        width:inherit;
-        height: inherit;
-    }
-  }
-  
-  @media only screen and (max-width: 1440px) {
-    .chart {
-      object-fit:scale-down;
-      margin-left: 130px;
-      width:inherit;
-      height: inherit;
-
-    }
   }
