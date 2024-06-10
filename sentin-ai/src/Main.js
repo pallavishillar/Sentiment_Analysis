@@ -13,11 +13,22 @@ import './Style/Box.css';
 import './Style/SearchBox.css';
 
 const Main = () => {
+
   const [data, setData] = useState({ Positive: 0, Neutral: 0, Negative: 0 });
   const [wordCloudUrl, setWordCloudUrl] = useState('');
   const [fileList, setFileList] = useState([]);
   const [responseFromBackend, setResponseFromBackend] = useState({});
   const [folderName, setFolderName] = useState('');
+  
+  //setFolderName(localStorage.getItem("folder_name"));
+
+  console.log('folder name : ', folderName);
+
+
+  const requestBody = {
+    folder_name : folderName,
+  }
+
 
   useEffect(() => {
     const fetchAnalysisData = async () => {
@@ -27,7 +38,7 @@ const Main = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({}),
+          body: JSON.stringify(requestBody),
         });
 
         const result = await response.json();
@@ -39,8 +50,11 @@ const Main = () => {
           });
 
           setWordCloudUrl(`data:image/jpeg;base64,${result.data.image}`);
+
           setFileList(result.data.file_list);
-          setFolderName(result.folder_name); 
+
+          setFolderName(localStorage.getItem("folder_name"));
+
         } else {
           console.error('Failed to fetch analysis results:', result.message);
         }

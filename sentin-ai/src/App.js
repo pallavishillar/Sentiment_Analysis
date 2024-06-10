@@ -12,10 +12,9 @@ function App() {
 const [showResultButton, setShowResultButton] = useState(false);
 const [file, setFile] = useState(null);
 
-  const handleFileChange = (file) => {
+const handleFileChange = (file) => {
     setFile(file);
-     
-  };
+};
 
   const fetchData = () => {
     setLoading(true);
@@ -30,6 +29,8 @@ const [file, setFile] = useState(null);
       .then(response => response.json())
       .then(response => {
         console.log(response);
+        localStorage.setItem("folder_name", response.folder_name);
+
         setLoading(false);
         setShowResultButton(true);
       })
