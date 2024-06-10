@@ -19,7 +19,11 @@ const Main = () => {
   const [fileList, setFileList] = useState([]);
   const [responseFromBackend, setResponseFromBackend] = useState({});
   const [folderName, setFolderName] = useState('');
+  setFolderName(localStorage.getItem('folder_name'));
 
+  const requestBody = {
+    folder_name : folderName,
+  }
   useEffect(() => {
     const fetchAnalysisData = async () => {
       try {
@@ -28,7 +32,7 @@ const Main = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({}),
+          body: JSON.stringify(requestBody),
         });
 
         const result = await response.json();
@@ -41,7 +45,6 @@ const Main = () => {
 
           setWordCloudUrl(`data:image/jpeg;base64,${result.data.image}`);
           setFileList(result.data.file_list);
-          setFolderName(result.folder_name); 
         } else {
           console.error('Failed to fetch analysis results:', result.message);
         }

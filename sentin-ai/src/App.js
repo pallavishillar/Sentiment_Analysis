@@ -10,11 +10,9 @@ function App(props) {
 const [loading, setLoading] = useState(false);
 const [showResultButton, setShowResultButton] = useState(false);
 const [file, setFile] = useState(null);
-const [fileName, setFileName] = useState('');
 
   const handleFileChange = (file) => {
     setFile(file);
-     
   };
 
   const fetchData = () => {
@@ -29,9 +27,9 @@ const [fileName, setFileName] = useState('');
       .then(response => response.json())
       .then(response => {
         console.log(response);
+        localStorage.setItem('folder_name', response.folder_name);
         setLoading(false);
         setShowResultButton(true);
-        setFileName(response.folder_name);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
