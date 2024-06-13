@@ -18,7 +18,9 @@ const PieChart = ({ data }) => {
 
   return (
     // <div style={{height: 'inherit',width: 'inherit', marginLeft: '0px', objectFit: 'scale-down' }}>
-    <div className='chart'><Pie data={chartData} />
+    <div className='chart'>
+     
+      <Pie data={chartData} />
     </div>
   );
 };

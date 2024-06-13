@@ -7,7 +7,7 @@ input[type="file"] {
     padding: 10px;
     width: 210px;
      /* border: 3px solid black;*/
-     border: 3px solid white;
+     border: 3px solid black;
     border-radius: 4px;
     color: #000;
     top: 390px;
@@ -39,7 +39,7 @@ input[type="file"] {
   }
 
   p{
-    color: white;
+    color: rgb(1, 1, 87);
     margin-top: -40px;
     margin-left: 600px;
   }

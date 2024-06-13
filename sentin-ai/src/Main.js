@@ -11,23 +11,26 @@ import './Style/Card3.css';
 import './Main.css';
 import './Style/Box.css';
 import './Style/SearchBox.css';
-import { useLocation } from 'react-router-dom';
+
+//import { renderMatches } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
 
 const Main = () => {
   const [data, setData] = useState({ Positive: 0, Neutral: 0, Negative: 0 });
   const [wordCloudUrl, setWordCloudUrl] = useState('');
   const [fileList, setFileList] = useState([]);
-  const [responseFromBackend, setResponseFromBackend] = useState({});
-  const [folderName, setFolderName] = useState('');
-  setFolderName(localStorage.getItem('folder_name'));
+  var folderName = localStorage.getItem('folder_name')
+  const [overallData, setOverallData] = useState({});
 
   const requestBody = {
-    folder_name : folderName,
+    folder_name: folderName,
   }
+
+  console.log('requestBody : ', requestBody);
   useEffect(() => {
     const fetchAnalysisData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8016/get_analysis", {
+        const response = await fetch("http://localhost:8000/fetch_data", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -43,8 +46,12 @@ const Main = () => {
             Negative: result.data.negative_counts,
           });
 
-          setWordCloudUrl(`data:image/jpeg;base64,${result.data.image}`);
           setFileList(result.data.file_list);
+
+          setWordCloudUrl(`data:img_str/jpeg;base64,${result.data.img_str}`);
+
+          setOverallData(result.data.data);
+
         } else {
           console.error('Failed to fetch analysis results:', result.message);
         }
@@ -54,43 +61,50 @@ const Main = () => {
     };
 
     fetchAnalysisData();
-  }, []);  
+  }, []);
 
-  const handleDropdownChange = async (newOption) => {
-    try {
-      const response = await fetch(`http://127.0.0.1:8016/get_analysis?file=${newOption}`);
-      const data = await response.json();
-      if (data.status) {
-        setResponseFromBackend(data.data);
-        return data;
-      } else {
-        console.error('Failed to fetch file data:', data.message);
-        return null;
-      }
-    } catch (error) {
-      console.error('Error fetching file data:', error);
-      return null;
-    }
-  };
+  console.log('counts data : ', data);
+  console.log('wordcloud data : ', wordCloudUrl);
+  console.log('fileList: ', fileList);
+  console.log('folder_name: ', folderName);
+  console.log('overall data : ', overallData);
+  // localStorage.setItem('overall_data', overallData);
 
   return (
     <div>
       <div className='Background'>
         <Navbar />
-        <Card name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
-        <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />
-        <Card name={"Negative"} card={<Box type={"Negative"} value={data.Negative} />} />
+        <div className='mainCards'>
+          <div >
+            <Card className="PositiveCard" name={"Positive"} card={<Box type={"Positive"} value={data.Positive} />} />
+          </div>
+
+          <div className='NeutralCard'>
+            <Card name={"Neutral"} card={<Box type={"Neutral"} value={data.Neutral} />} />
+          </div>
+
+          <div className='NegativeCard'>
+            <Card name={"Negative"} card={<Box type={"Negative"} value={data.Negative} />} />
+          </div>
+
+        </div>
 
         <div className="card2-container">
-          <Card2 type="chart" data={data} />
-          <Card2 type="wordCloud" wordCloudUrl={wordCloudUrl} />
+          <div>
+            <Card2 type="chart" data={data} />
+          </div>
+
+          <div>
+            <Card2 type="wordCloud" wordCloudUrl={wordCloudUrl} />
+          </div>
+
         </div>
 
         <Card3
           dropdownOptions={fileList}
-          onDropdownChange={handleDropdownChange}
-          responseData={responseFromBackend}
-          folderName={folderName} 
+          folderName={folderName}
+          // overallData={JSON.stringify(overallData)}
+          overallData={overallData}
         />
       </div>
     </div>

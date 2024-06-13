@@ -1,26 +1,38 @@
 .card2 {
     margin-top: 5px;
     margin-left: 40px;
-    width: 580px;
+    width: 595px;
     height: 300px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    /* background-color: rgb(255, 255, 255); */
+    /* background-color: rgb(201, 180, 234); */
+    box-shadow: 0 4px 8px 0 rgba(41, 21, 97, 0.842);
+    padding: 10px;
     border-radius: 5px;
     margin-bottom: 20px;
     display: inline-block;
+    font-family: "Poppins", sans-serif;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .word-cloud {
-    object-fit:scale-down;
-    margin-left: 0px;
-    width:inherit;
-    height: inherit;
+    /* object-fit:scale-down; */
+    margin-top: -10px;
+    width:540px;
+    height: 250px;
+    /* width: inherit;
+    height: inherit; */
   }
 
   .chart{
-    object-fit:scale-down;
-    margin-left: 130px;
-    width:inherit;
-    height: inherit;
+    margin-top: -15px;
+    height: 250px;
+    /* width: 280px; */
+    margin-left: 165px;
   }
+
+  h1{
+    margin-top: 5px;
+  }
+ 

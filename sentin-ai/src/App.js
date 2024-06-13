@@ -5,11 +5,12 @@ import Button from './Components/Button';
 import Form from './Components/Form';
 import './Style/Form.css';
 import { Link } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App(props) {
-const [loading, setLoading] = useState(false);
-const [showResultButton, setShowResultButton] = useState(false);
-const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showResultButton, setShowResultButton] = useState(false);
+  const [file, setFile] = useState(null);
 
   const handleFileChange = (file) => {
     setFile(file);
@@ -20,16 +21,29 @@ const [file, setFile] = useState(null);
 
     const formData = new FormData();
     formData.append('file', file);
-    fetch("http://localhost:3949/begin_analysis", {
+    fetch("http://localhost:8000/begin_analysis", {
       method: 'POST',
       body: formData
     })
       .then(response => response.json())
       .then(response => {
         console.log(response);
-        localStorage.setItem('folder_name', response.folder_name);
-        setLoading(false);
-        setShowResultButton(true);
+        if (response.status == true) {
+          localStorage.setItem('folder_name', response.folder_name);
+          setLoading(false);
+          setShowResultButton(true);
+          toast.success(response.message);
+        }
+        else if (response.status == false) {
+          toast.error(response.message);
+          setLoading(false);
+
+        }
+        else {
+          toast.error('Upload File Failed!');
+          setLoading(false);
+
+        }
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -38,24 +52,48 @@ const [file, setFile] = useState(null);
   };
 
   return (
-  <>
-    <div className='Background-color'>
-      
-      <Form onFileChange={handleFileChange} />
-      
-      <Button className="Sendbtn" name={"Send"} onClick={fetchData} />
+    <>
+      <div className='Background-color'>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          gutter={8}
+          containerClassName=""
+          containerStyle={{}}
+          toastOptions={{
+            // Define default options
+            className: '',
+            duration: 5000,
+            style: {
+              background: '#363636',
+              color: '#fff',
+            },
 
-      {loading && <div className="loading-screen">Analysing...</div>}
+            // Default options for specific types
+            success: {
+              duration: 3000,
+              theme: {
+                primary: 'green',
+                secondary: 'black',
+              },
+            },
+          }}
+        />
+        <Form onFileChange={handleFileChange} />
 
-      {showResultButton && (
-        <Link to="/Main">
-          <Button className="ViewResult" name={"View Result"}></Button>
-        </Link>
+        <Button className="Sendbtn" name={"Send"} onClick={fetchData} />
 
-      )}
-    </div>
-    
-  </>
+        {loading && <div className="loading-screen">Analysing...</div>}
+
+        {showResultButton && (
+          <Link to="/Main">
+            <Button className="ViewResult" name={"View Result"}></Button>
+          </Link>
+
+        )}
+      </div>
+
+    </>
   );
 }
 

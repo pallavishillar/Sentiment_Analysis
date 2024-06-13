@@ -1,10 +1,15 @@
+
+
+
 .Background{
-    background: url('./Images/BackgroundImg.png');
+    /* background: url('./Images/BackgroundImg.png'); */
     /* background: url('./Images/Mainbackground.png'); */
     /* background: url('./Images/Mainbackground2.png'); */
+    background: rgb(218, 218, 232);
 }
 
   .card2-container {
+    font-family: "Poppins", sans-serif;
     display: flex;
     gap: 10px; /* Adjust the gap as needed */
   }
@@ -13,3 +18,8 @@
     flex: 1;
   }
    */
+
+  .mainCards{
+    display: flex;  
+  }
+

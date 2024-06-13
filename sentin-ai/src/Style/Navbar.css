@@ -1,9 +1,12 @@
 *{
     color: white;
+    font-family: "popins";
 }
 
 body{
-    background-color: rgb(1, 1, 78);
+    /* background-color: rgb(218, 183, 248); */
+    background: rgb(31, 21, 95);
+  
 }
 
 hr{
@@ -12,8 +15,9 @@ hr{
 
 .text{
     position: absolute;
-    left: 30px;
-    margin-top: -30px;
+    color: white;
+    left: 500px;
+    margin-top:-40px;
 }
 
 .navbar{

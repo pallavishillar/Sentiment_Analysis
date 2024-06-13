@@ -1,5 +1,6 @@
 .Background-color {
-  background: url('./Images/BackgroundImg.png');
+  background: url('./Images/Sentiment_background_img.png');
+  /* background-color: rgb(250, 194, 206); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
